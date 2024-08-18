@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "starting a host shell......."
+exec distrobox-host-exec /usr/bin/gnome-terminal --window-with-profile=marc
+#exec blackbox
