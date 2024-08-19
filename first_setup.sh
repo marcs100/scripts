@@ -22,7 +22,7 @@ fi
 case $OS in
 
   "Aeon" | "openSUSE Tumbleweed" | "Kalpa")
-    additional_pkgs="neovim git"
+    additional_pkgs="neovim git  python311-tk"
     ;;
   "Arch Linux")
     additional_pkgs="neovim git micro"
@@ -34,7 +34,7 @@ case $OS in
     additional_pkgs="neovim git micro"
     ;;
   "Debian GNU/Linux")
-    additional_pkgs="neovim git micro"
+    additional_pkgs="neovim git micro tk"
     ;;
   *)
     echo Warning: Could not determine distro, will not add any additioanl packages!
