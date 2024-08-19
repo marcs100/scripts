@@ -12,7 +12,8 @@ else
 fi
 
 #checking to see if gnome-terminal is installed...
-if distrobox-host-exec command -v gnome-terminal >&2; then
+#note: command -v gnome-terminal does not work for some reason!!!!
+if distrobox-host-exec whereis gnome-terminal >&2; then
   distrobox-host-exec /usr/bin/gnome-terminal --window-with-profile $os_profile
   exit
 fi
