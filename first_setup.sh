@@ -13,6 +13,37 @@ fi
 #Packages names are distro dependent. In future we will use the .yaml stack files from Vanialla OS.
 #We will need to autodetct the distro and select the stack file acccordingly.
 #note: to detect OS name use /etc/os-release
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+fi
+
+case $OS in
+
+  "Aeon" | "openSUSE Tumbleweed" | "Kalpa")
+    additional_pkgs="neovim git"
+    ;;
+  "Arch Linux")
+    additional_pkgs="neovim git micro"
+    ;;
+  "Fedora Linux") #to do add silverblue and kinote once I verify the names
+    additional_pkgs="vim git micro"
+    ;;
+  "Ubuntu")
+    additional_pkgs="neovim git micro"
+    ;;
+  "Debian GNU/Linux")
+    additional_pkgs="neovim git micro"
+    ;;
+  *)
+    echo Warning: Could not determine distro, will not add any additioanl packages!
+    additional_pkgs=""
+    ;;
+esac
+
+echo Distro: $OS
+
 additional_pkgs="git vim"
 
 #echo Checking to see if git is installed...
@@ -32,7 +63,7 @@ else
 fi
 
 _hostname=$(hostnamectl hostname)
-_cont_suffix="-cc"
+_cont_suffix="-c"
 echo Setting hostname for container based on $_hostname
 if [ _hostname >&2 ]; then
   container_host="${_hostname}${_cont_suffix}"
