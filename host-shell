@@ -1,5 +1,26 @@
 #!/bin/bash
 
+os_profile="os_shell"
+
 echo "starting a host shell......."
-exec distrobox-host-exec /usr/bin/gnome-terminal --window-with-profile=marc
-#exec blackbox
+
+#checking to see if distrobox-host-exec is installed...
+if command -v distrobox-host-exec >&2; then
+  echo     distrobox-host-exec is installed
+else
+  echo Aborting! - could not find distrobox-host-exec
+fi
+
+#checking to see if gnome-terminal is installed...
+if distrobox-host-exec command -v gnome-terminal >&2; then
+  distrobox-host-exec /usr/bin/gnome-terminal --window-with-profile $os_profile
+  exit
+fi
+
+#checking to see if konsole is installed...
+if distrobox-host-exec command -v konsole >&2; then
+  distrobox-host-exec /usr/bin/konsole --profile $os_profile
+  exit
+fi
+
+echo ERROR: Could not find a supported terminal for host-shell!
