@@ -10,6 +10,10 @@ else
   pre_req_met=0
 fi
 
+#Packages names are distro dependent. In future we will use the .yaml stack files from Vanialla OS.
+#We will need to autodetct the distro and select the stack file acccordingly.
+#note: to detect OS name use /etc/os-release
+additional_pkgs="git vim"
 
 #echo Checking to see if git is installed...
 #if command -v git >&2; then
@@ -28,14 +32,20 @@ else
 fi
 
 _hostname=$(hostnamectl hostname)
-_cont_suffix="-c"
+_cont_suffix="-cc"
 echo Setting hostname for container based on $_hostname
 if [ _hostname >&2 ]; then
   container_host="${_hostname}${_cont_suffix}"
   echo Creating distrobox container for $container_host ...
-  distrobox-create -n $container_host
+  if [ -z $additional_pkgs ]; then
+    distrobox-create -n $container_host
+  else
+    #echo distrobox-create -n $container_host --additional-packages $additional_pkgs
+    distrobox-create -n $container_host --additional-packages "$additional_pkgs"
+  fi
 else
   echo could not get host name!
+  exit
 fi
 	
 
