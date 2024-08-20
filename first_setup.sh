@@ -25,16 +25,16 @@ case $OS in
     additional_pkgs="neovim git  python311-tk"
     ;;
   "Arch Linux")
-    additional_pkgs="neovim git micro"
+    additional_pkgs="neovim git micro tk"
     ;;
   "Fedora Linux") #to do add silverblue and kinote once I verify the names
-    additional_pkgs="vim git micro"
+    additional_pkgs="vim git micro python-tkinter"
     ;;
   "Ubuntu")
-    additional_pkgs="neovim git micro"
+    additional_pkgs="neovim git micro python3-tk"
     ;;
   "Debian GNU/Linux")
-    additional_pkgs="neovim git micro tk"
+    additional_pkgs="neovim git micro python3-tk"
     ;;
   *)
     echo Warning: Could not determine distro, will not add any additioanl packages!
