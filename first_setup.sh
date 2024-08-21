@@ -20,7 +20,6 @@ if [ -f /etc/os-release ]; then
 fi
 
 case $OS in
-
   "Aeon" | "openSUSE Tumbleweed" | "Kalpa")
     additional_pkgs="neovim git  python311-tk"
     ;;
@@ -43,8 +42,6 @@ case $OS in
 esac
 
 echo Distro: $OS
-
-additional_pkgs="git vim"
 
 #echo Checking to see if git is installed...
 #if command -v git >&2; then
