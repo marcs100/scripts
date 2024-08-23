@@ -1,4 +1,18 @@
 #!/bin/bash
+echo Checking to see if git is installed...
+if command -v git >&2; then
+  cd ~
+  mkdir first_setup
+  cd first_setup
+  git clone https://github.com/marcs100/scripts.git
+  mkdir ~/.local/bin
+  cp *.sh ~/.local/bin
+  chmod +x ~/.local/bin/*.sh
+  rm -rf ~/first_setup
+else
+    echo Git is not installed will not clone scripts repo
+fi
+
 
 #check distrobox is installed
 pre_req_met=1
@@ -42,15 +56,6 @@ case $OS in
 esac
 
 echo Distro: $OS
-
-#echo Checking to see if git is installed...
-#if command -v git >&2; then
-#  echo     git is installed
-#else
-#  echo Please install git and rerun this script!
-#  pre_req_met=0
-#fi
-
 
 if [ $pre_req_met -eq 1 ]; then
 	echo "Prerequisites have been met!"
