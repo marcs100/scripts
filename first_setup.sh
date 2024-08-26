@@ -17,7 +17,8 @@ fi
 #check distrobox is installed
 echo checking to see if distrobox is installed...
 if command -v distrobox >&2; then
-  echo     distrobox is installed
+  has_distrobox=true
+  echo distrobox is installed
 fi
 
 if [ "$has_git" =  true ]; then
