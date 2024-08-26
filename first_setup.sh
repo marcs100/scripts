@@ -1,28 +1,42 @@
 #!/bin/bash
+has_git=false
+has_distrobox=false
+
 echo Checking to see if git is installed...
 if command -v git >&2; then
-  cd ~
-  mkdir first_setup
-  cd first_setup
-  git clone https://github.com/marcs100/scripts.git
-  mkdir ~/.local/bin
-  cp *.sh ~/.local/bin
-  chmod +x ~/.local/bin/*.sh
-  rm -rf ~/first_setup
+    echo git is installed
+    has_git=true
+    mkdir ~/source
+    git clone git@github.com:marcs100/scripts.git ~/source/scripts
+    git clone https://github.com/marcs100/stacks.git ~/source/stacks
+    git clone https://github.com/marcs100/autostart.git ~/source/autostart  
 else
-    echo Git is not installed will not clone scripts repo
+    echo Warning: Git is not installed will not clone repos.
 fi
 
-
 #check distrobox is installed
-pre_req_met=1
 echo checking to see if distrobox is installed...
 if command -v distrobox >&2; then
   echo     distrobox is installed
-else
-  echo Please install distrobox and rerun this script!
-  pre_req_met=0
 fi
+
+if [ "$has_git" =  true ]; then
+    #install scribe
+    ~/source/scribe/install.sh
+    cp ~/source/srcibe/scribe.desktop ~/.local/share/applications
+    
+    #copy script to aouto start main distrobox container
+    if [ "$has_distrobox" = true ]; then
+	mkdir ~/.config/autostart
+        cp ~source/scripts/startup.sh ~/.config/autostart
+    fi
+fi    
+
+if [ "$has_distrobox" = false]; then
+    echo please install distobox and rerun this script to continue
+    exit
+fi
+
 
 #Packages names are distro dependent. In future we will use the .yaml stack files from Vanialla OS.
 #We will need to autodetct the distro and select the stack file acccordingly.
@@ -56,13 +70,6 @@ case $OS in
 esac
 
 echo Distro: $OS
-
-if [ $pre_req_met -eq 1 ]; then
-	echo "Prerequisites have been met!"
-else
-	echo "Prerequisites have not been met, cannot continue"
-	exit
-fi
 
 _hostname=$(hostnamectl hostname)
 _cont_suffix="-c"
