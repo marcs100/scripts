@@ -12,6 +12,7 @@ if command -v git >&2; then
     git clone https://github.com/marcs100/scripts.git ~/source/scripts
     git clone https://github.com/marcs100/stacks.git ~/source/stacks
     git clone https://github.com/marcs100/autostart.git ~/source/autostart  
+    git clone https://github.com/marcs100/scribe.git
 else
     echo Warning: Git is not installed will not clone repos.
 fi
