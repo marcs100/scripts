@@ -6,8 +6,10 @@ echo Checking to see if git is installed...
 if command -v git >&2; then
     echo git is installed
     has_git=true
+    git config --global user.name marcs100
+    git config --global user.email marcs100@gmail.com
     mkdir ~/source
-    git clone git@github.com:marcs100/scripts.git ~/source/scripts
+    git clone https://github.com/marcs100/scripts.git ~/source/scripts
     git clone https://github.com/marcs100/stacks.git ~/source/stacks
     git clone https://github.com/marcs100/autostart.git ~/source/autostart  
 else
