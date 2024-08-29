@@ -12,7 +12,7 @@ if command -v git >&2; then
     git clone https://github.com/marcs100/scripts.git ~/source/scripts
     git clone https://github.com/marcs100/stacks.git ~/source/stacks
     git clone https://github.com/marcs100/autostart.git ~/source/autostart  
-    git clone https://github.com/marcs100/scribe.git
+    git clone https://github.com/marcs100/scribe.git ~/source/scribe
 else
     echo Warning: Git is not installed will not clone repos.
 fi
@@ -36,7 +36,7 @@ if [ "$has_git" =  true ]; then
     fi
 fi    
 
-if [ "$has_distrobox" = false]; then
+if [ "$has_distrobox" = false ]; then
     echo please install distobox and rerun this script to continue
     exit
 fi
