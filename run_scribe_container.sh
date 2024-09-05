@@ -8,5 +8,5 @@ if [ -z _hostname ]; then
   echo could not get host name!
 else
   container_host="${_hostname}${_cont_suffix}"
-  distrobox-enter $container_host -e python3 ~/.local/bin/scribe/scribe.py
+  distrobox-enter $container_host -e python3 ~/.local/bin/Scribe/scribe.py
 fi
