@@ -25,6 +25,7 @@ if [ $i -eq 0 ]; then  # no entries found
   echo -e "${RED}package not found${NC}"
   exit
 elif [ $i -eq 1 ]; then #only one entry found so go ahead and list it
+  echo -e "${GREEN}Listing files for $pkg_dirs[0]${NC}"
   ls -R ${pkg_dirs[0]}
 else #more than one found so give user some options
   echo
