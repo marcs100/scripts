@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#----------------------------------------
+#Script to list files in a local package 
+#----------------------------------------
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -26,7 +30,7 @@ if [ $i -eq 0 ]; then  # no entries found
   exit
 elif [ $i -eq 1 ]; then #only one entry found so go ahead and list it
   echo -e "${GREEN}Listing files for $pkg_dirs[0]${NC}"
-  ls -R ${pkg_dirs[0]}
+  ls -Rh ${pkg_dirs[0]}
 else #more than one found so give user some options
   echo
   echo -e "${GREEN}Found $i entries${NC}"
@@ -56,7 +60,7 @@ else #more than one found so give user some options
         echo
         echo -e "${GREEN}Listing files for $pkg_dir${NC}"
         echo
-        ls -R $pkg_dir
+        ls -Rh $pkg_dir
         echo
       done
       ;;  
@@ -69,7 +73,7 @@ else #more than one found so give user some options
         else
           pkg_index=user_in-1
           echo -e "${GREEN} Listing files for ${pkg_dirs[$pkg_index]}${NC}" 
-          ls -R ${pkg_dirs[$pkg_index]}  
+          ls -Rh ${pkg_dirs[$pkg_index]}  
         fi  
       else
          echo -e "${RED}invalid option!${NC}"
