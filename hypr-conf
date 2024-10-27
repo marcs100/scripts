@@ -1,0 +1,3 @@
+#!/bin/bash
+
+helix ~/.config/hypr/* ~/.config/waybar/*

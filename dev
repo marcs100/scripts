@@ -1,3 +1,3 @@
 #!/bin/bash
 
-distrobox-enter arch-dev -e zellij -l ~/dev.kdl
+distrobox-enter arch-dev -e zellij -l ~/.config/zellij-layouts/dev.kdl
