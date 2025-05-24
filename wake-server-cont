@@ -1,0 +1,3 @@
+#!/bin/bash
+
+distrobox enter tw -- wol 6C:BF:B5:03:AA:65
