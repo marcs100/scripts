@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sleep 20
-wakeonlan 6C:BF:B5:03:AA:65
+wol 6C:BF:B5:03:AA:65
